@@ -7,7 +7,7 @@ import {
     highlightThirdVideo,
     whiteImg,
     yellowImg,
-} from "../utils";
+} from "@/utils";
 
 export const navLists = ["Store", "Mac", "iPhone", "Support"];
 
@@ -73,7 +73,7 @@ export const models = [
     },
 ];
 
-export const sizes = [
+export const sizes:{label:string,value:"small"|"large"}[] = [
     { label: '6.1"', value: "small" },
     { label: '6.7"', value: "large" },
 ];

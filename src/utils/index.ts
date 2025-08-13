@@ -1,7 +1,7 @@
 export const heroImg = "/assets/images/hero.jpeg";
 
 // Videos from public — use URLs, not imports
-export const heroVideo = "/assets/videos/hero/video1.mp4"; // replace with actual file names inside hero folder
+export const heroVideo = "/assets/videos/hero.mp4"; // replace with actual file names inside hero folder
 export const smallHeroVideo = "/assets/videos/smallHero.mp4";
 export const highlightFirstVideo = "/assets/videos/highlight-first.mp4";
 export const highlightSecondVideo = "/assets/videos/hightlight-third.mp4";
