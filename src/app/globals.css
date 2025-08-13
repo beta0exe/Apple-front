@@ -1,7 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* Tailwind v4 theme variables */
+@theme {
+  --color-blue: #2997FF;
+  --color-gray: #86868b;
+  --color-gray-100: #94928d;
+  --color-gray-200: #afafaf;
+  --color-gray-300: #42424570;
+  --color-zinc: #101010;
+}
+
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +27,10 @@ body {
   user-select: none;
 }
 
+header {
+  padding: 1.5rem 3rem;
+}
+
 canvas {
   touch-action: none;
 }
@@ -28,20 +41,66 @@ canvas {
   position: relative;
   max-width: 1120px;
 }
+.someextrapaddings{
+   padding: 4rem 0;
+}
+.someextramargins{
+  margin-bottom: 3rem;
+}
+someextramargins-r{
+  padding-right: 2rem;
+}
+.extragaps{
+  gap: 3rem;
+}
+.color-container{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color:#42424570 ;
+  backdrop-filter: blur(10px);
+  margin: 1rem;
+  gap: 1rem;
 
-@layer utilities {
-  .flex-center {
-    @apply flex items-center justify-center;
-  }
+}
+canvas {
+  touch-action: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
 
-  .nav-height {
-    height: calc(100vh - 60px);
-  }
+/* Model Controls */
+.model-controls {
+  transition: opacity 0.3s ease;
+}
 
+.color-container li {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-container li:hover {
+  transform: scale(1.1);
+}
+
+.size-btn {
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.section-heading {
+  opacity: 0; /* Initial state for animation */
+}
+
+/* COMPONENTS: these won't override padding/margin utilities unless you set them */
+@layer components {
   .btn {
-    @apply px-5 py-2 rounded-3xl my-5
-    border border-transparent hover:border-blue-500
-    hover:text-blue-500 transition-colors;
+    @apply px-5 py-2 rounded-3xl my-5 border border-transparent hover:border-blue-500 hover:text-blue-500 transition-colors;
   }
 
   .color-container {
@@ -71,7 +130,7 @@ canvas {
   }
 
   .feature-text-container {
-    @apply w-full flex-center flex-col md:flex-row mt-10 md:mt-16 gap-5;
+    @apply w-full flex items-center justify-center flex-col md:flex-row mt-10 md:mt-16 gap-5;
   }
 
   .feature-video {
@@ -83,17 +142,18 @@ canvas {
     @apply w-full flex flex-col md:flex-row gap-5 items-center;
   }
 
+  /* moved from utilities → components so px/py utilities in HTML can override */
   .link {
     @apply text-blue-500 hover:underline cursor-pointer flex items-center text-xl opacity-0;
     transform: translateY(20px);
   }
 
   .control-btn {
-    @apply ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex-center;
+    @apply ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex items-center justify-center;
   }
 
   .hero-title {
-    @apply text-center font-semibold text-3xl text-gray-100 opacity-0 max-md:mb-10;
+    @apply text-center font-semibold text-5xl text-gray-100 opacity-0 max-md:mb-10;
   }
 
   .hiw-title {
@@ -129,5 +189,28 @@ canvas {
   .g_fadeIn {
     @apply opacity-0;
     transform: translateY(100px);
+  }
+}
+
+/* UTILITIES: quick reusable flex/height helpers */
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .nav-height {
+    height: calc(100vh - 60px);
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .someextrapaddings {
+    padding: 1rem 2rem;
+  }
+  .extragaps{
+    gap: 0.3rem;
+  }
+  .somegap{
+    gap: 1rem;
   }
 }
