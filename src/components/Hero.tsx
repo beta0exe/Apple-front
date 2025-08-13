@@ -5,21 +5,27 @@ import {useGSAP} from "@gsap/react";
 import {heroVideo,smallHeroVideo} from "@/utils";
 
 const Hero = () => {
-    const [videoSrc,setVideoSrc] = useState(window.innerWidth < 760 ?smallHeroVideo : heroVideo);
-    const handleVideoSrcSet = () =>{
-        if (window.innerWidth < 760) {
-            setVideoSrc(smallHeroVideo);
-        }else {
-            setVideoSrc(heroVideo);
-        }
-    }
-    useEffect(() => {
-       window.addEventListener("resize", handleVideoSrcSet);
+    const [videoSrc, setVideoSrc] = useState(heroVideo);
 
-       return () => {
-           window.removeEventListener("resize", handleVideoSrcSet);
-       }
-    },[])
+    useEffect(() => {
+        // Function to set video source based on window width
+        const handleVideoSrcSet = () => {
+            if (window.innerWidth < 760) {
+                setVideoSrc(smallHeroVideo);
+            } else {
+                setVideoSrc(heroVideo);
+            }
+        };
+
+        // Run once on mount
+        handleVideoSrcSet();
+
+        // Optional: update on window resize
+        window.addEventListener("resize", handleVideoSrcSet);
+
+        // Cleanup listener on unmount
+        return () => window.removeEventListener("resize", handleVideoSrcSet);
+    }, []);
 
     useGSAP(()=>{
          gsap.to("#hero",{
